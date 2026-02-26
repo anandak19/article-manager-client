@@ -1,0 +1,27 @@
+<nav class="nav">
+  <ul class="nav__list">
+    <li class="nav__item">
+      <a
+        (click)="close()"
+        class="nav__link"
+        routerLink="/"
+        routerLinkActive="nav__link--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Home
+      </a>
+    </li>
+
+    <li class="nav__item">
+      <a
+        (click)="close()"
+        class="nav__link"
+        routerLink="/mine"
+        routerLinkActive="nav__link--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        My Articles
+      </a>
+    </li>
+  </ul>
+</nav>

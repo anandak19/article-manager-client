@@ -1,0 +1,10 @@
+@use 'index' as *;
+
+.main {
+  padding-top: $header-hight;
+  min-height: 100vh;
+
+  @include respond('xs'){
+    padding-top: $header-hight-mobile;
+  }
+}
