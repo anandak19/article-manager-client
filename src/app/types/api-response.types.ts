@@ -14,5 +14,5 @@ export interface IErrorResponse extends HttpResponse {
 
 // use this insted of IBasicResponseData
 export interface ISuccessResponse<T> extends HttpResponse {
-  data?: T;
+  data: T;
 }

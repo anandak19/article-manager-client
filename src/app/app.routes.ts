@@ -9,11 +9,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'login',
-        loadComponent: () => import('./features/auth/login/login').then((c) => c.Login),
+        loadComponent: () => import('./features/auth/pages/login/login').then((c) => c.Login),
       },
       {
         path: 'signup',
-        loadComponent: () => import('./features/auth/signup/signup').then((c) => c.Signup),
+        loadComponent: () => import('./features/auth/pages/signup/signup').then((c) => c.Signup),
       },
       {
         path: '',

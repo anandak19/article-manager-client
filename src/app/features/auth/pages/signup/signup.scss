@@ -1,0 +1,127 @@
+@use 'index' as *;
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $spacing-4;
+
+  &__wrapper {
+    height: 500px;
+    width: 100%;
+    max-width: 650px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: $spacing-5;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    padding-top: $spacing-3;
+    gap: $spacing-4;
+
+    .head {
+      text-align: center;
+      h3 {
+        font-size: $font-size-lg;
+        margin-bottom: $spacing-2;
+      }
+    }
+
+    .form-controls {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-4;
+
+      .name-fields {
+        display: flex;
+        mat-form-field {
+          flex: 1;
+        }
+      }
+
+      .passwords {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .name-fields,
+      .passwords {
+        gap: $spacing-2;
+      }
+
+      mat-form-field {
+        width: 100%;
+      }
+    }
+
+    .action {
+      width: 100%;
+      &--double {
+        display: flex;
+        justify-content: center;
+        gap: $spacing-2;
+      }
+    }
+
+    .resend {
+      a {
+        color: blue;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    button {
+      margin-top: $spacing-3;
+      align-self: flex-end;
+      padding: 6px 20px;
+      border-radius: 8px;
+    }
+  }
+
+  ::ng-deep .mat-stepper-horizontal {
+    background-color: #ffffff !important;
+  }
+
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .signup {
+    &__wrapper {
+      height: auto;
+      border-radius: 16px;
+    }
+
+    &__form {
+      .form-controls {
+        .name-fields {
+          flex-direction: column;
+        }
+      }
+
+      button {
+        width: 100%;
+        align-self: stretch;
+      }
+    }
+  }
+}

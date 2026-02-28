@@ -12,3 +12,13 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+.full-page {
+  min-height: calc(100vh - $header-hight);
+  @include respond('xs') {
+    min-height: calc(100vh - $header-hight-mobile);
+  }
+}
+
+.error-text {
+  font-size: 12px;
+}
