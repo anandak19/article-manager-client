@@ -1,27 +1,25 @@
-import { DestroyRef, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '@core/service/auth/auth-service';
 import { catchError, map, of } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const isLoginGuard: CanActivateFn = (route, state) => {
   const _authService = inject(AuthService);
   const _router = inject(Router);
 
   const currUser = _authService.getCurrUser();
-  if (currUser) return true;
+  if (currUser) return false;
 
   return _authService.fetchCurrUser().pipe(
     map((res) => {
-      console.log(res)
       if (res.data) {
         _authService.setCurrUser(res.data);
-        return true;
+        return _router.createUrlTree(['/']);
       }
-      return _router.createUrlTree(['/login']);
+      return true;
     }),
     catchError(() => {
-      return of(_router.createUrlTree(['/login']));
+      return of(true);
     }),
   );
 };
