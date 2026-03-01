@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { IPayload } from '@features/auth/models/login.model';
-import { ISuccessResponse } from 'app/types/api-response.types';
+import { IBaseResponse, ISuccessResponse } from 'app/types/api-response.types';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class AuthService {
   private _http = inject(HttpClient);
   private API_ENDPOINT = 'auth';
 
-  private currUser = signal<IPayload | null>(null);
+  currUser = signal<IPayload | null>(null);
 
   getCurrUser() {
     return this.currUser();
@@ -26,5 +26,9 @@ export class AuthService {
 
   fetchCurrUser() {
     return this._http.get<ISuccessResponse<IPayload>>(`${this.API_ENDPOINT}/me`);
+  }
+
+  logoutUser() {
+    return this._http.post<IBaseResponse>(`${this.API_ENDPOINT}/logout`, {});
   }
 }

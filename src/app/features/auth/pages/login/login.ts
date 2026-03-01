@@ -10,6 +10,7 @@ import { IUserLogin } from '@features/auth/models/login.model';
 import { finalize } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IErrorResponse } from 'app/types/api-response.types';
+import { AuthService } from '@core/service/auth/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,7 @@ export class Login {
   private _snackbar = inject(SnackbarService);
   private _destroyRef = inject(DestroyRef);
   private _loginService = inject(LoginService);
+  private _authService = inject(AuthService);
 
   isLoading = signal(false);
   isSubmitted = signal(false);
@@ -54,6 +56,17 @@ export class Login {
 
   navigateSignup() {
     this._router.navigate(['/signup']);
+  }
+
+  setCurrUser() {
+    this._authService.fetchCurrUser().subscribe({
+      next: (res) => {
+        this._authService.setCurrUser(res.data);
+      },
+      error: () => {
+        this._authService.clearCurrUser();
+      },
+    });
   }
 
   onLoginSubmit() {
@@ -80,7 +93,8 @@ export class Login {
       .subscribe({
         next: (res) => {
           this._snackbar.success(res.message);
-          this.reset()
+          this.reset();
+          this.setCurrUser();
           this._router.navigate(['/']);
         },
         error: (err: IErrorResponse) => {
