@@ -4,6 +4,7 @@ import { ViewOneArticle } from './pages/view-one-article/view-one-article';
 import { CreateArticle } from './pages/create-article/create-article';
 import { MyArticleLayout } from './pages/my-articles/my-article-layout/my-article-layout';
 import { MyArticlesRoutes } from './pages/my-articles/my-articles.routes';
+import { authGuard } from '@core/guards/auth/auth-guard';
 
 export const DashboardRoutes: Routes = [
   {
@@ -12,10 +13,12 @@ export const DashboardRoutes: Routes = [
   },
   {
     path: 'create',
+    canActivate: [authGuard],
     component: CreateArticle,
   },
   {
     path: 'mine',
+    canActivate: [authGuard],
     component: MyArticleLayout,
     children: MyArticlesRoutes,
   },
@@ -24,8 +27,6 @@ export const DashboardRoutes: Routes = [
     component: ViewOneArticle,
   },
 ];
-
-
 
 /**
  * path: /

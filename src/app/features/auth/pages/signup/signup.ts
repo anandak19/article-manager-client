@@ -237,6 +237,10 @@ export class Signup implements OnInit {
     });
   }
 
+  navigateLogin() {
+    this._router.navigate(['/login']);
+  }
+
   ngOnInit(): void {
     this.initUserDetailsForm();
     this.initOtpForm();

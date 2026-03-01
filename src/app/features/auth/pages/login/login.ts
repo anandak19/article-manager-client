@@ -1,8 +1,15 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { MatFormField, MatLabel, MatError, MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoadingButton } from '@shared/components/ui/loading-button/loading-button';
+import { Router } from '@angular/router';
+import { SnackbarService } from '@core/service/snackbar/snackbar-service';
+import { LoginService } from '@features/auth/services/login/login-service';
+import { IUserLogin } from '@features/auth/models/login.model';
+import { finalize } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { IErrorResponse } from 'app/types/api-response.types';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +20,7 @@ import { LoadingButton } from '@shared/components/ui/loading-button/loading-butt
     MatError,
     MatIcon,
     ReactiveFormsModule,
-    LoadingButton
+    LoadingButton,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
@@ -21,6 +28,13 @@ import { LoadingButton } from '@shared/components/ui/loading-button/loading-butt
 export class Login {
   hidePassword = signal(true);
   private _fb = inject(FormBuilder);
+  private _router = inject(Router);
+  private _snackbar = inject(SnackbarService);
+  private _destroyRef = inject(DestroyRef);
+  private _loginService = inject(LoginService);
+
+  isLoading = signal(false);
+  isSubmitted = signal(false);
 
   loginForm = this._fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -38,12 +52,46 @@ export class Login {
     return 'Invalid field';
   }
 
+  navigateSignup() {
+    this._router.navigate(['/signup']);
+  }
+
   onLoginSubmit() {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
 
-    console.log(this.loginForm.value);
+    this.isSubmitted.set(true);
+    this.isLoading.set(true);
+    const formData = this.loginForm.getRawValue();
+
+    const loginPayload: IUserLogin = {
+      email: formData.email!,
+      password: formData.password!,
+    };
+
+    this._loginService
+      .login(loginPayload)
+      .pipe(
+        finalize(() => this.isLoading.set(false)),
+        takeUntilDestroyed(this._destroyRef),
+      )
+      .subscribe({
+        next: (res) => {
+          this._snackbar.success(res.message);
+          this.reset()
+          this._router.navigate(['/']);
+        },
+        error: (err: IErrorResponse) => {
+          this._snackbar.error(err.message);
+        },
+      });
+  }
+
+  reset() {
+    this.loginForm.reset();
+    this.loginForm.markAsPristine();
+    this.loginForm.markAsUntouched();
   }
 }

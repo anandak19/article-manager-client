@@ -30,13 +30,18 @@
       </div>
 
       <div class="action">
-        <app-loading-button text="Login" type="submit" size="large"></app-loading-button>
+        <app-loading-button
+          text="Login"
+          type="submit"
+          size="large"
+          [isLoading]="isLoading"
+        ></app-loading-button>
       </div>
 
       <div class="extra">
         <p>
           Don't have an account?
-          <a routerLink="/signup">Signup</a>
+          <a (click)="navigateSignup()">Signup</a>
         </p>
       </div>
     </form>
