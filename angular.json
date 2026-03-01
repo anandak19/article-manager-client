@@ -29,9 +29,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/app/styles/styles.scss"
-            ],
+            "styles": ["src/app/styles/styles.scss", "node_modules/quill/dist/quill.snow.css"],
             "stylePreprocessorOptions": {
               "includePaths": ["src/app/styles"]
             }

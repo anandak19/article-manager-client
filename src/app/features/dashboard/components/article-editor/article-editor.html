@@ -1,0 +1,34 @@
+<div class="article-editor">
+  <div class="article-editor__actions">
+    <button matButton (click)="toggleMode()">
+      {{ isEditMode() ? 'Preview' : 'Edit' }}
+    </button>
+  </div>
+
+  @if (isEditMode()) {
+    <div class="article-editor__editor-wrapper">
+      <div>
+        <form>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Article Title</mat-label>
+            <input matInput placeholder="Title" />
+            <mat-error>sdf</mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div>
+        <quill-editor
+          [(ngModel)]="content"
+          class="article-editor__editor full-width"
+          [format]="'json'"
+          [modules]="modules"
+          placeholder=""
+        >
+        </quill-editor>
+      </div>
+    </div>
+  } @else {
+    <app-article-preview [content]="content"></app-article-preview>
+  }
+</div>

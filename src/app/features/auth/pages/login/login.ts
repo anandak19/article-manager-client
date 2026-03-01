@@ -29,8 +29,8 @@ import { AuthService } from '@core/service/auth/auth-service';
 export class Login {
   hidePassword = signal(true);
   private _fb = inject(FormBuilder);
-  private _router = inject(Router);
   private _snackbar = inject(SnackbarService);
+  private _router = inject(Router);
   private _destroyRef = inject(DestroyRef);
   private _loginService = inject(LoginService);
   private _authService = inject(AuthService);

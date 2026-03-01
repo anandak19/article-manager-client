@@ -1,1 +1,17 @@
-<p>list-my-articles works!</p>
+<div class="articles full-page">
+  <div class="articles__container">
+    <h1 class="articles__title">My Articles</h1>
+
+    <div class="articles__actions">
+      <app-loading-button text="Create" (clickEvent)="navigateCreate()"></app-loading-button>
+    </div>
+
+    <div class="articles__list">
+      <!-- Example Article Card -->
+      <div class="articles__item">
+        <h3 class="articles__item-title">Article Title</h3>
+        <p class="articles__item-desc">Short description of the article goes here...</p>
+      </div>
+    </div>
+  </div>
+</div>
