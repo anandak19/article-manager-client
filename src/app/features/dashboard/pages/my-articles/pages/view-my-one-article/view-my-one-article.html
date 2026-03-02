@@ -1,1 +1,25 @@
-<p>view-my-one-article works!</p>
+<div class="view-my-article full-page">
+  <div class="view-my-article__container">
+    <div class="head">
+      <div class="title">
+        <button mat-icon-button (click)="navigateBack()">
+          <mat-icon>arrow_back_ios_new</mat-icon>
+        </button>
+        <h1 class="page-title">Reading</h1>
+      </div>
+      <div class="actions">
+        <button mat-icon-button color="primary" aria-label="Edit article" (click)="onEdit()">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" aria-label="Delete article" (click)="onDelete()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="body">
+      <app-view-article [articleDetails]="article"></app-view-article>
+    </div>
+  </div>
+</div>

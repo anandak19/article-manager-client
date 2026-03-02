@@ -9,6 +9,14 @@
     justify-content: end;
   }
 
+  &__editor-wrapper{
+    form{
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-2
+    }
+  }
+
   .full-width {
     width: 100%;
   }

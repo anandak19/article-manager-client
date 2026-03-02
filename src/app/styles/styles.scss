@@ -22,3 +22,29 @@ body {
 .error-text {
   font-size: 12px;
 }
+
+// snackbar
+.mat-snackbar-panel-custom {
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  display: flex;
+  align-items: center;
+}
+
+.mode-success {
+  background-color: $success-green;
+}
+.mode-error {
+  background-color: $red;
+}
+
+.mode-info {
+  background-color: $black-hover;
+}
+
+.color-white {
+  color: #fff;
+}
+.text-center {
+  justify-content: center;
+}

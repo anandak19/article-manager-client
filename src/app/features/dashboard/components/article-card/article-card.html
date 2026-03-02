@@ -1,0 +1,17 @@
+@if (articleData) {
+  <div class="article-card" (click)="onViewArticle(articleData.id)">
+    <div class="article-card__content">
+      <h2 class="article-card__title">
+        {{ articleData.title }}
+      </h2>
+
+      <div class="article-card__meta">
+        <span class="article-card__author"> By {{ articleData.writerName }} </span>
+
+        <span class="article-card__date">
+          {{ articleData.createdAt | date: 'mediumDate' }}
+        </span>
+      </div>
+    </div>
+  </div>
+}

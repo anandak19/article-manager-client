@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { QuillModule } from 'ngx-quill';
-import { Delta } from 'quill';
 
 @Component({
   selector: 'app-article-preview',
@@ -9,5 +8,6 @@ import { Delta } from 'quill';
   styleUrl: './article-preview.scss',
 })
 export class ArticlePreview {
-  @Input() content!: Delta | null;
+  @Input() content!: string | null;
+  @Input() title!: string | null;
 }

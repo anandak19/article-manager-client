@@ -8,7 +8,11 @@
     </div>
 
     <div class="create-article__content">
-      <app-article-editor></app-article-editor>
+      <app-article-editor
+        (articleData)="handleNewArticle($event)"
+        [isFormSubmited]="isFormSubmited"
+        [isLoading]="isLoading"
+      ></app-article-editor>
     </div>
   </div>
 </div>

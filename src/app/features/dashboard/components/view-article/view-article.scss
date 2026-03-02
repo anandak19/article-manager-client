@@ -1,0 +1,37 @@
+@use 'index' as *;
+
+.view_article {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__author {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; // moves content to right
+    gap: 4px;
+  }
+
+  &__author-name {
+    margin: 0;
+    font-size: $font-size-sm;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  &__author-date {
+    margin: 0;
+    font-size: $font-size-sm;
+    font-style: italic;
+    font-weight: 400;
+    color: #737373;
+  }
+
+  &__quill-view {
+    width: 100%;
+  }
+}

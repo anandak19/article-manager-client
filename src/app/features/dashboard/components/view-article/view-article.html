@@ -1,0 +1,16 @@
+<div class="view_article">
+  <h1 class="view_article__title">{{ articleDetails().title }}</h1>
+
+  <div class="view_article__author">
+    <p class="view_article__author-name">{{ articleDetails().writerName }}</p>
+    <p class="view_article__author-date">{{ articleDetails().createdAt | date}}</p>
+  </div>
+
+  <quill-view
+    [content]="articleDetails().content"
+    [format]="'html'"
+    theme="snow"
+    class="view_article__quill-view"
+  >
+  </quill-view>
+</div>

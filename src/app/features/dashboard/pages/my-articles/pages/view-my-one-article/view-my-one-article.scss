@@ -1,0 +1,40 @@
+@use 'index' as *;
+
+.view-my-article {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: $background;
+
+  &__container {
+    width: 100%;
+    max-width: 900px;
+    min-width: 600px;
+    padding: 32px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+    .head {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: $spacing-2;
+
+        .page-title {
+          font-weight: 600;
+          font-size: $font-size-lg;
+        }
+      }
+
+      .actions{
+        display: flex;
+        gap: $spacing-2;
+      }
+    }
+  }
+}

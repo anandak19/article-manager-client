@@ -22,8 +22,8 @@
       gap: $spacing-2;
       margin-bottom: 24px;
       .page-title {
-        font-size: 28px;
         font-weight: 600;
+        font-size: $font-size-lg;
       }
     }
   }

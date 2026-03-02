@@ -3,56 +3,41 @@
 
 html {
   height: 100%;
-  @include mat.theme((
-    color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}
-
-:root {
-  @include mat.toolbar-overrides((
-    standard-height: $header-hight,
-    mobile-height: $header-hight-mobile
-  ));
-}
-
-// spinner
-:root {
-  @include mat.progress-spinner-overrides(
+  @include mat.theme(
     (
-      active-indicator-color: rgb(255, 255, 255),
-      size: 24px,
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+:root {
+  @include mat.toolbar-overrides(
+    (
+      standard-height: $header-hight,
+      mobile-height: $header-hight-mobile,
     )
   );
 }
 
 
-// snackbar
-.mat-snackbar-panel-custom {
-  font-size: 14px;
-  font-weight: $font-weight-medium;
-  display: flex;
-  align-items: center;
-}
+:root {
+  // spinner
+  @include mat.progress-spinner-overrides(
+    (
+      active-indicator-color: #ffffff,
+      size: 24px,
+    )
+  );
 
-.mode-success {
-  background-color: $success-green;
-}
-.mode-error {
-  background-color: $red;
-}
-
-.mode-info {
-  background-color: $black-hover;
-}
-
-.color-white {
-  color: #fff;
-}
-.text-center {
-  justify-content: center;
+  // paginator
+  @include mat.paginator-overrides(
+    (
+      container-background-color: #ffffff,
+    )
+  );
 }
