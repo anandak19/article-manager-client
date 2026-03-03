@@ -28,7 +28,7 @@
   &__actions {
     .auth-buttons {
       display: flex;
-      gap: $spacing-1;
+      gap: $spacing-2;
       .btn {
         border: 1px solid $secondary-color;
         &--active {

@@ -1,0 +1,50 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9fafb;
+  padding: 2rem 1rem;
+
+  &__head {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 2rem;
+
+    p {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #111827;
+      margin: 0;
+    }
+  }
+
+  &__body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__list-container {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 3rem 0;
+    color: #6b7280;
+    font-size: 1rem;
+  }
+
+  &__paginator {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+}

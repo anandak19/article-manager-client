@@ -1,6 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ICreateArticle, IListArticle } from '@features/dashboard/models/article.model';
+import {
+  IArticleDetails,
+  ICreateArticle,
+  IListArticle,
+} from '@features/dashboard/models/article.model';
 import { IBaseResponse, IPaginatedResult, ISuccessResponse } from 'app/types/api-response.types';
 import { IPaginationQuery } from 'app/types/query-filters.types';
 
@@ -25,5 +29,9 @@ export class UserArticleService {
       `${this.API_ENDPOINT}`,
       { params },
     );
+  }
+
+  findOneById(id: string) {
+    return this._http.get<ISuccessResponse<IArticleDetails>>(`${this.API_ENDPOINT}/${id}`);
   }
 }

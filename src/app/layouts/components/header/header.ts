@@ -1,5 +1,5 @@
 import { Component, DestroyRef, HostListener, inject, OnInit, signal } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -16,6 +16,7 @@ import { SnackbarService } from '@core/service/snackbar/snackbar-service';
   imports: [
     MatToolbarModule,
     MatButtonModule,
+    MatIconButton,
     MatIconModule,
     MatSidenavModule,
     MatListModule,
@@ -64,6 +65,10 @@ export class Header implements OnInit {
 
   navigateHome() {
     this._router.navigate(['/']);
+  }
+
+  navigateCreate() {
+    this._router.navigate(['/create']);
   }
 
   ngOnInit(): void {

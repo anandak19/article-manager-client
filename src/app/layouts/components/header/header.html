@@ -12,6 +12,10 @@
     <div class="header__actions">
       <div class="auth-buttons">
         @if (_authService.getCurrUser()) {
+          <a mat-stroked-button class="btn" (click)="navigateCreate()">
+            <mat-icon>edit_note</mat-icon>
+            Write
+          </a>
           <a mat-button class="btn btn--active" (click)="logout()">Logout</a>
         } @else {
           <a mat-button class="btn" routerLink="/login" routerLinkActive="btn--active">Login</a>

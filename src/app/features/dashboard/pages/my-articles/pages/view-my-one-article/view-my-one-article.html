@@ -18,8 +18,10 @@
       </div>
     </div>
 
-    <div class="body">
-      <app-view-article [articleDetails]="article"></app-view-article>
-    </div>
+    @if(article()){
+      <div class="body">
+        <app-view-article [articleDetails]="article"></app-view-article>
+      </div>
+    }
   </div>
 </div>

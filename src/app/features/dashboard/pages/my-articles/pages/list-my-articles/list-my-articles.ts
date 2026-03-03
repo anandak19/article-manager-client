@@ -48,12 +48,12 @@ export class ListMyArticles implements OnInit {
     this.findAllMyArticles();
   }
 
-  navigateCreate() {
-    this._router.navigate(['/create']);
-  }
-
   onViewArticle(id: string) {
     this._router.navigate([`${id}`], { relativeTo: this._activatedRoute });
+  }
+
+  navigateCreate() {
+    this._router.navigate(['/create']);
   }
 
   ngOnInit(): void {

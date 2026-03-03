@@ -23,7 +23,7 @@ export const DashboardRoutes: Routes = [
     children: MyArticlesRoutes,
   },
   {
-    path: 'article/:id',
+    path: 'article/:articleId',
     component: ViewOneArticle,
   },
 ];

@@ -13,7 +13,6 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   return _authService.fetchCurrUser().pipe(
     map((res) => {
-      console.log(res)
       if (res.data) {
         _authService.setCurrUser(res.data);
         return true;
