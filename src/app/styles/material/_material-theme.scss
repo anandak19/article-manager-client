@@ -3,19 +3,41 @@
 
 html {
   height: 100%;
-  @include mat.theme((
-    color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }
 
 :root {
-  @include mat.toolbar-overrides((
-    standard-height: $header-hight,
-    mobile-height: $header-hight-mobile
-  ));
+  @include mat.toolbar-overrides(
+    (
+      standard-height: $header-hight,
+      mobile-height: $header-hight-mobile,
+    )
+  );
+}
+
+
+:root {
+  // spinner
+  @include mat.progress-spinner-overrides(
+    (
+      active-indicator-color: #ffffff,
+      size: 24px,
+    )
+  );
+
+  // paginator
+  @include mat.paginator-overrides(
+    (
+      container-background-color: #ffffff,
+    )
+  );
 }

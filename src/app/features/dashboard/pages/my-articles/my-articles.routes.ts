@@ -9,11 +9,11 @@ export const MyArticlesRoutes: Routes = [
     component: ListMyArticles,
   },
   {
-    path: ':id',
+    path: ':articleId',
     component: ViewMyOneArticle,
   },
   {
-    path: ':id/edit',
+    path: ':articleId/edit',
     component: EditArticle,
   },
 ];

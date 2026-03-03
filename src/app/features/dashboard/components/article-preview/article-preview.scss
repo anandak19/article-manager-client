@@ -1,0 +1,10 @@
+@use 'index' as *;
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  .qull-view {
+    width: 100%;
+  }
+}

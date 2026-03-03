@@ -14,5 +14,17 @@ export interface IErrorResponse extends HttpResponse {
 
 // use this insted of IBasicResponseData
 export interface ISuccessResponse<T> extends HttpResponse {
-  data?: T;
+  data: T;
+}
+
+export interface IPaginationMeta {
+  total: number;
+  page: number;
+  limit: number;
+  pages: number;
+}
+
+export interface IPaginatedResult<T> {
+  documents: T[];
+  meta: IPaginationMeta;
 }

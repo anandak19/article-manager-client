@@ -1,1 +1,22 @@
-<p>view-one-article works!</p>
+<div class="view-my-article">
+  <div class="view-my-article__container">
+
+    <div class="view-my-article__header">
+      <div class="view-my-article__title">
+        <button mat-icon-button (click)="navigateBack()">
+          <mat-icon>arrow_back_ios_new</mat-icon>
+        </button>
+        <h1 class="view-my-article__page-title">Reading</h1>
+      </div>
+    </div>
+
+    @if(article()){
+      <div class="view-my-article__body">
+        <app-view-article
+          [articleDetails]="article">
+        </app-view-article>
+      </div>
+    }
+
+  </div>
+</div>

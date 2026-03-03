@@ -1,0 +1,49 @@
+<div class="article-editor">
+  <div class="article-editor__actions">
+    <button matButton (click)="toggleMode()">
+      {{ isEditMode() ? 'Preview' : 'Edit' }}
+    </button>
+  </div>
+
+  @if (isEditMode()) {
+    <div class="article-editor__editor-wrapper">
+      <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Article Title</mat-label>
+            <input matInput placeholder="Title" formControlName="title" />
+            <mat-error>Title is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <quill-editor
+            class="article-editor__editor full-width"
+            [format]="'html'"
+            [modules]="modules"
+            placeholder=""
+            formControlName="content"
+          >
+          </quill-editor>
+          @if (isFormSubmited()) {
+            @if (articleForm.get('content')?.hasError('required')) {
+              <mat-error class="error-text">Content is required</mat-error>
+            } @else if (articleForm.get('content')?.hasError('maxlength')) {
+              <mat-error class="error-text">Content is too longg</mat-error>
+            }
+          }
+        </div>
+
+        <div class="article-editor__actions">
+          <app-loading-button
+            text="Save"
+            [isLoading]="isLoading"
+            type="submit"
+          ></app-loading-button>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <app-article-preview [content]="content" [title]="title"></app-article-preview>
+  }
+</div>

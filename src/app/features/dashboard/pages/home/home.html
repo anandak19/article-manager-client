@@ -1,1 +1,27 @@
-<p>home works!</p>
+<div class="home full-page">
+  <div class="home__head">
+    <p>For you</p>
+  </div>
+
+  <div class="home__body">
+    <div class="home__list-container">
+      <div class="home__list">
+        @for (item of articles(); track $index) {
+          <app-article-card
+            [articleData]="item"
+            (viewArticle)="onViewArticle($event)"
+          ></app-article-card>
+        }
+
+        @if (paginationMeta() && paginationMeta()?.total) {
+          <div class="home__paginator">
+            <app-paginator-component
+              [paginationMeta]="paginationMeta!"
+              (pageChange)="onPageChange($event)"
+            ></app-paginator-component>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

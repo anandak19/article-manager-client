@@ -5,6 +5,7 @@
   left: 0;
   right: 0;
   top: 0;
+  z-index: 1001;
   border-bottom: 1px solid $secondary-color;
   &__toolbar {
     width: 100%;
@@ -14,6 +15,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      .brand-name {
+        cursor: pointer;
+      }
     }
 
     .toogle-btn {
@@ -24,7 +28,7 @@
   &__actions {
     .auth-buttons {
       display: flex;
-      gap: $spacing-1;
+      gap: $spacing-2;
       .btn {
         border: 1px solid $secondary-color;
         &--active {
@@ -40,6 +44,12 @@
     &__toolbar {
       .toogle-btn {
         display: flex;
+      }
+
+      .brand {
+        .brand-name {
+          font-size: $font-size-md;
+        }
       }
     }
 

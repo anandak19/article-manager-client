@@ -1,0 +1,49 @@
+<div class="login full-page">
+  <div class="login__wrapper">
+    <form [formGroup]="loginForm" class="login__form" (ngSubmit)="onLoginSubmit()">
+      <div class="head">
+        <h3>Login</h3>
+        <p>Welcome back! Please enter your details.</p>
+      </div>
+
+      <div class="form-controls">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error>{{ getLoginError('email') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            [type]="hidePassword() ? 'password' : 'text'"
+          />
+
+          <mat-icon matSuffix (click)="hidePassword.set(!hidePassword())" style="cursor: pointer">
+            {{ hidePassword() ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+
+          <mat-error>{{ getLoginError('password') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="action">
+        <app-loading-button
+          text="Login"
+          type="submit"
+          size="large"
+          [isLoading]="isLoading"
+        ></app-loading-button>
+      </div>
+
+      <div class="extra">
+        <p>
+          Don't have an account?
+          <a (click)="navigateSignup()">Signup</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

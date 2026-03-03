@@ -1,1 +1,23 @@
-<p>list-my-articles works!</p>
+<div class="articles full-page">
+  <div class="articles__container">
+    <h1 class="articles__title">My Articles</h1>
+
+    <div class="articles__actions">
+      <app-loading-button text="Create" (clickEvent)="navigateCreate()"></app-loading-button>
+    </div>
+
+    <div class="articles__list-container">
+      <div class="articles__list">
+        @for (item of articles(); track $index) {
+          <app-article-card [articleData]="item" (viewArticle)="onViewArticle($event)"></app-article-card>
+        }
+      </div>
+      @if (paginationMeta() && paginationMeta()?.total) {
+        <app-paginator-component
+          [paginationMeta]="paginationMeta!"
+          (pageChange)="onPageChange($event)"
+        ></app-paginator-component>
+      }
+    </div>
+  </div>
+</div>
