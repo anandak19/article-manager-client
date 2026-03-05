@@ -3,7 +3,7 @@ import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { IArticleDetails } from '@features/dashboard/models/article.model';
 import { ViewArticle } from '@features/dashboard/components/view-article/view-article';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from '@core/service/snackbar/snackbar-service';
 import { UserArticleService } from '@features/dashboard/services/user-article/user-article-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -21,6 +21,7 @@ export class ViewMyOneArticle implements OnInit {
   @Input() articleId!: string;
 
   private _router = inject(Router);
+  private _activatedRoute = inject(ActivatedRoute);
   private _destroyRef = inject(DestroyRef);
   private _snackbar = inject(SnackbarService);
   private _userArticleService = inject(UserArticleService);
@@ -28,25 +29,28 @@ export class ViewMyOneArticle implements OnInit {
 
   article = signal<IArticleDetails>({} as IArticleDetails);
 
-  onEdit() {}
+  onEdit() {
+    if (!this.articleId) return;
+    this._router.navigate([`edit`], { relativeTo: this._activatedRoute });
+  }
 
   onDelete() {
     if (!this.articleId) return;
 
     this._dialogService.ask().then((isYes) => {
       if (isYes) {
-            this._userArticleService
-        .deleteOne(this.articleId)
-        .pipe(takeUntilDestroyed(this._destroyRef))
-        .subscribe({
-          next: (res) => {
-            this._router.navigate(['/mine']);
-            this._snackbar.success(res.message);
-          },
-          error: (err: IErrorResponse) => {
-            this._snackbar.error(err.message);
-          },
-        });
+        this._userArticleService
+          .deleteOne(this.articleId)
+          .pipe(takeUntilDestroyed(this._destroyRef))
+          .subscribe({
+            next: (res) => {
+              this._router.navigate(['/mine']);
+              this._snackbar.success(res.message);
+            },
+            error: (err: IErrorResponse) => {
+              this._snackbar.error(err.message);
+            },
+          });
       }
     });
   }

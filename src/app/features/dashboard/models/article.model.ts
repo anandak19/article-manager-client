@@ -3,6 +3,8 @@ export interface ICreateArticle {
   content: string;
 }
 
+export type IUpdateArticle = ICreateArticle;
+
 export interface IArticle extends ICreateArticle {
   id: string;
   userId: string;

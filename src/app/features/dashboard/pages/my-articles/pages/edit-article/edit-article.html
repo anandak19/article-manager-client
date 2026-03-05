@@ -1,1 +1,19 @@
-<p>edit-article works!</p>
+<div class="edit-article full-page">
+  <div class="edit-article__wrapper">
+    <div class="head">
+      <button mat-icon-button (click)="navigateBack()">
+        <mat-icon>arrow_back_ios_new</mat-icon>
+      </button>
+      <h1 class="page-title">Edit Article</h1>
+    </div>
+
+    <div class="edit-article__content">
+      <app-article-editor
+        [ariticleId]="articleId"
+        (articleData)="updateArticle($event)"
+        [isFormSubmited]="isFormSubmited"
+        [isLoading]="isLoading"
+      ></app-article-editor>
+    </div>
+  </div>
+</div>

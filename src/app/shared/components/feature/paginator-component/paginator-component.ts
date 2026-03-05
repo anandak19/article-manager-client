@@ -10,13 +10,13 @@ import { IPaginationQuery } from 'app/types/query-filters.types';
   styleUrl: './paginator-component.scss',
 })
 export class PaginatorComponent {
-  @Input() paginationMeta = signal<IPaginationMeta>({} as IPaginationMeta);
+  @Input() paginationMeta = signal<IPaginationMeta | null>(null);
   @Output() pageChange = new EventEmitter<number>();
   pageEvent: PageEvent | undefined;
 
   handlePageChange(e: PageEvent) {
     this.pageEvent = e;
-    const pagePos = this.pageEvent.pageIndex + 1
+    const pagePos = this.pageEvent.pageIndex + 1;
     this.pageChange.emit(pagePos);
   }
 }
