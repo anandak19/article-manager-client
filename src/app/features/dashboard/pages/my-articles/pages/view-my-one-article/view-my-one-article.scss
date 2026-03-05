@@ -31,10 +31,17 @@
         }
       }
 
-      .actions{
+      .actions {
         display: flex;
         gap: $spacing-2;
       }
+    }
+  }
+
+  @include respond('xs') {
+    &__container {
+      max-width: 500px;
+      min-width: 400px;
     }
   }
 }

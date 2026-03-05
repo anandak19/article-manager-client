@@ -28,7 +28,7 @@ export class ListMyArticles implements OnInit {
   });
 
   articles = signal<IListArticle[]>([]);
-  paginationMeta = signal<IPaginationMeta>({} as IPaginationMeta);
+  paginationMeta = signal<IPaginationMeta | null>(null);
 
   findAllMyArticles() {
     this._userArticleService

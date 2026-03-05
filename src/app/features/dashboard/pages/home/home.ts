@@ -6,8 +6,8 @@ import { IListArticle } from '@features/dashboard/models/article.model';
 import { ArticleService } from '@features/dashboard/services/article/article-service';
 import { IErrorResponse, IPaginationMeta } from 'app/types/api-response.types';
 import { IPaginationQuery } from 'app/types/query-filters.types';
-import { ArticleCard } from "@features/dashboard/components/article-card/article-card";
-import { PaginatorComponent } from "@shared/components/feature/paginator-component/paginator-component";
+import { ArticleCard } from '@features/dashboard/components/article-card/article-card';
+import { PaginatorComponent } from '@shared/components/feature/paginator-component/paginator-component';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +27,7 @@ export class Home implements OnInit {
   });
 
   articles = signal<IListArticle[]>([]);
-  paginationMeta = signal<IPaginationMeta>({} as IPaginationMeta);
+  paginationMeta = signal<IPaginationMeta | null>(null);
 
   findAllArticles() {
     this._articleService

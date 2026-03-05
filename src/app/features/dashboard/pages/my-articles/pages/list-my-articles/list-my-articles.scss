@@ -43,4 +43,18 @@
     flex-direction: column;
     gap: $spacing-3;
   }
+
+  @include respond('xs') {
+    padding: 40px 10px;
+
+    &__container {
+      max-width: 500px;
+      min-width: 400px;
+    }
+
+    &__title {
+      font-size: $font-size-md;
+      margin-bottom: $spacing-2;
+    }
+  }
 }

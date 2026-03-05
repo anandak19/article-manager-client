@@ -37,7 +37,6 @@ export class ViewOneArticle {
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
         next: (res) => {
-          console.log(res.data);
           this.article.set(res.data);
         },
         error: (err: IErrorResponse) => {

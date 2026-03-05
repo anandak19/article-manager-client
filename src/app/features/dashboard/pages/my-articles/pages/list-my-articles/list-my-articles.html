@@ -12,9 +12,9 @@
           <app-article-card [articleData]="item" (viewArticle)="onViewArticle($event)"></app-article-card>
         }
       </div>
-      @if (paginationMeta() && paginationMeta()?.total) {
+      @if (paginationMeta()) {
         <app-paginator-component
-          [paginationMeta]="paginationMeta!"
+          [paginationMeta]="paginationMeta"
           (pageChange)="onPageChange($event)"
         ></app-paginator-component>
       }

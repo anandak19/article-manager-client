@@ -13,10 +13,10 @@
           ></app-article-card>
         }
 
-        @if (paginationMeta() && paginationMeta()?.total) {
+        @if (paginationMeta()) {
           <div class="home__paginator">
             <app-paginator-component
-              [paginationMeta]="paginationMeta!"
+              [paginationMeta]="paginationMeta"
               (pageChange)="onPageChange($event)"
             ></app-paginator-component>
           </div>
