@@ -4,6 +4,7 @@ import {
   IArticleDetails,
   ICreateArticle,
   IListArticle,
+  IUpdateArticle,
 } from '@features/dashboard/models/article.model';
 import { IBaseResponse, IPaginatedResult, ISuccessResponse } from 'app/types/api-response.types';
 import { IPaginationQuery } from 'app/types/query-filters.types';
@@ -33,5 +34,12 @@ export class UserArticleService {
 
   findOneById(id: string) {
     return this._http.get<ISuccessResponse<IArticleDetails>>(`${this.API_ENDPOINT}/${id}`);
+  }
+
+  updateArticle(articleId: string, update: IUpdateArticle) {
+    return this._http.patch<ISuccessResponse<IArticleDetails>>(
+      `${this.API_ENDPOINT}/${articleId}`,
+      update,
+    );
   }
 }

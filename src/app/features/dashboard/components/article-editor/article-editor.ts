@@ -22,11 +22,13 @@ import {
 } from '@angular/forms';
 import { ArticlePreview } from '../article-preview/article-preview';
 import { MatError, MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
-import { MatIcon } from '@angular/material/icon';
 import { LoadingButton } from '@shared/components/ui/loading-button/loading-button';
 import { MatButton } from '@angular/material/button';
 import { SnackbarService } from '@core/service/snackbar/snackbar-service';
-import { ICreateArticle } from '@features/dashboard/models/article.model';
+import { IArticleDetails, ICreateArticle } from '@features/dashboard/models/article.model';
+import { UserArticleService } from '@features/dashboard/services/user-article/user-article-service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { IErrorResponse } from 'app/types/api-response.types';
 
 @Component({
   selector: 'app-article-editor',
@@ -38,7 +40,6 @@ import { ICreateArticle } from '@features/dashboard/models/article.model';
     MatFormField,
     MatLabel,
     MatError,
-    MatIcon,
     MatButton,
     ReactiveFormsModule,
     LoadingButton,
@@ -79,6 +80,7 @@ export class ArticleEditor implements OnInit {
   private _fb = inject(FormBuilder);
   private _snackbarService = inject(SnackbarService);
   private _destroyRef = inject(DestroyRef);
+  private _userArticleService = inject(UserArticleService);
 
   toggleMode() {
     this.isEditMode.set(!this.isEditMode());
@@ -88,6 +90,15 @@ export class ArticleEditor implements OnInit {
     this.articleForm = this._fb.group({
       title: this._fb.nonNullable.control('', Validators.required),
       content: this._fb.control<string | null>(null, [this.contentValidator(500000)]),
+    });
+  }
+
+  patchForm(data: IArticleDetails) {
+    if (!this.articleForm) return;
+
+    this.articleForm.patchValue({
+      title: data.title,
+      content: data.content,
     });
   }
 
@@ -140,7 +151,24 @@ export class ArticleEditor implements OnInit {
     this.articleData.emit(article);
   }
 
+  populateArticleDetails(id: string) {
+    this._userArticleService
+      .findOneById(id)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.patchForm(res.data);
+        },
+        error: (err: IErrorResponse) => {
+          this._snackbarService.error(err.message);
+        },
+      });
+  }
+
   ngOnInit(): void {
     this.initForm();
+    if (this.ariticleId) {
+      this.populateArticleDetails(this.ariticleId);
+    }
   }
 }
